@@ -23,6 +23,6 @@ docker-compose up -d
 5. recheck the node status on manager web
 
 ## Reference
-[1]: https://github.com/alibaba/otter
-[2]: https://github.com/mr5/docker_otter_manager
-[3]: https://github.com/mr5/docker_otter_node
+  * https://github.com/alibaba/otter
+  * https://github.com/mr5/docker_otter_manager
+  * https://github.com/mr5/docker_otter_node
