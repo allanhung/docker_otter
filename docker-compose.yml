@@ -1,0 +1,51 @@
+version: '3'
+services:
+    manager:
+        build: ./manager
+        environment:
+            - DOMAIN_NAME=127.0.0.1
+            - HTTP_PORT=8080
+            - DB_HOST=mysql
+            - DB_PASSWORD=dbpass
+            - ZK_DEFAULT=zk:2181
+        ports:
+            - "8080:8080"
+            - "1099:1099"
+        volumes:
+            - "/opt/otter/data/manager/log:/opt/otter/otter_manager/logs"
+        depends_on:
+            - mysql
+            - zk
+    node:
+        build: ./node
+        environment:
+            - MANAGER_ADDRESS=manager:1099
+            - NID=1
+        ports:
+            - "2088:2088"
+            - "2090:2090"
+            - "9092:9092"
+        volumes:
+            - "/opt/otter/data/node/log:/opt/otter/otter_node/logs/node"
+        depends_on:
+            - manager
+    zk:
+        build: ./zookeeper
+        restart: always
+        ports:
+            - "2181:2181"
+            - "2888:2888"
+            - "3888:3888"
+        volumes:
+            - "/opt/otter/data/zookeeper/data:/data/zookeeper"
+            - "/opt/otter/data/zookeeper/log:/var/log/zookeeper"
+    mysql:
+        image: mysql:5.6
+        restart: always
+        environment:
+            - MYSQL_DATABASE=otter
+            - MYSQL_ROOT_PASSWORD=dbpass
+        ports:
+            - "3306:3306"
+        volumes:
+            - "/opt/otter/data/mysql/data:/var/lib/mysql"
