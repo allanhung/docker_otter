@@ -18,8 +18,8 @@ RUN update-alternatives --install  /usr/bin/java java /opt/jdk/bin/java 1065 && 
     update-alternatives --set  javap /opt/jdk/bin/javap
 
 # otter
-RUN wget -q --no-check-certificate -c https://github.com/alibaba/otter/releases/download/v4.2.15/node.deployer-4.2.15.tar.gz
-RUN mkdir -p /opt/otter/otter_node-4.2.15 && tar -zxf node.deployer-4.2.15.tar.gz -C /opt/otter/otter_node-4.2.15 && ln -s /opt/otter/otter_node-4.2.15 /opt/otter/otter_node
+RUN wget -q --no-check-certificate -c https://github.com/alibaba/otter/releases/download/otter-4.2.16-preview-1/node.deployer-4.2.16-SNAPSHOT.tar.gz
+RUN mkdir -p /opt/otter/otter_node-4.2.16-preview-1 && tar -zxf node.deployer-4.2.16-SNAPSHOT.tar.gz -C /opt/otter/otter_node-4.2.16-preview-1 && ln -s /opt/otter/otter_node-4.2.16-preview-1 /opt/otter/otter_node
 ADD logback.xml /opt/otter/otter_node/conf/
 ADD docker-entrypoint.sh /
 RUN chmod +x docker-entrypoint.sh
