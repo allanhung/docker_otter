@@ -26,7 +26,10 @@ services:
             - "2090:2090"
             - "9092:9092"
         volumes:
-            - "/opt/otter/data/node/log:/opt/otter/otter_node/logs/node"
+            - "/opt/otter/data/node/log:/opt/otter/otter_node/logs"
+            - "/opt/otter/data/node/data/download:/opt/otter/otter_node/download"
+            - "/opt/otter/data/node/data/extend:/opt/otter/otter_node/extend"
+            - "/opt/otter/data/node/data/htdocs:/opt/otter/otter_node/htdocs"
         depends_on:
             - manager
     zk:
