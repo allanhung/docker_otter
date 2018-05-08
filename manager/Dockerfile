@@ -1,7 +1,5 @@
 FROM centos:7
 
-ARG JDK_VERSION=8u171
-ENV
 RUN yum install -y wget which mysql
 
 # jdk
