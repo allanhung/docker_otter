@@ -19,12 +19,14 @@ RUN update-alternatives --install  /usr/bin/java java /opt/jdk/bin/java 1065 && 
 # zookeeper
 RUN wget -q --no-check-certificate -c http://apache.mirror.digitalpacific.com.au/zookeeper/stable/zookeeper-3.4.12.tar.gz
 RUN mkdir -p /opt/otter && tar -zxf zookeeper-3.4.12.tar.gz -C /opt/otter && rm -f zookeeper-3.4.12.tar.gz && ln -s /opt/otter/zookeeper-3.4.12 /opt/otter/zookeeper && \
-    mv /opt/otter/zookeeper/conf/zoo_sample.cfg /opt/otter/zookeeper/conf/zoo.cfg && \
-    mkdir -p /data/zookeeper && sed -ri 's|(dataDir=).*$|\1'"/data/zookeeper"'|' /opt/otter/zookeeper/conf/zoo.cfg && \
-    mkdir -p /var/log/zookeeper && sed -ri 's|(zookeeper.root.logger=).*|\1'"INFO, CONSOLE, ROLLINGFILE"'|' /opt/otter/zookeeper/conf/log4j.properties && \
-    sed -ri 's|(zookeeper.log.dir=).*|\1'"/var/log/zookeeper"'|' /opt/otter/zookeeper/conf/log4j.properties
+    mkdir -p /data/zookeeper && \
+      sed -ri 's|(dataDir=).*$|\1'"/data/zookeeper"'|' /opt/otter/zookeeper/conf/zoo_sample.cfg && \
+    mkdir -p /var/log/zookeeper && \
+      sed -ri 's|(zookeeper.root.logger=).*|\1'"INFO, CONSOLE, ROLLINGFILE"'|' /opt/otter/zookeeper/conf/log4j.properties && \
+      sed -ri 's|(zookeeper.log.dir=).*|\1'"/var/log/zookeeper"'|' /opt/otter/zookeeper/conf/log4j.properties
 
 EXPOSE 2181 2888 3888
 WORKDIR /opt/otter/zookeeper
 VOLUME ["/data/zookeeper", "/var/log/zookeeper"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/opt/otter/zookeeper/bin/zkServer.sh", "start-foreground"]
