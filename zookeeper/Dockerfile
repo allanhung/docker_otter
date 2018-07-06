@@ -25,6 +25,8 @@ RUN mkdir -p /opt/otter && tar -zxf zookeeper-3.4.12.tar.gz -C /opt/otter && rm 
       sed -ri 's|(zookeeper.root.logger=).*|\1'"INFO, CONSOLE, ROLLINGFILE"'|' /opt/otter/zookeeper/conf/log4j.properties && \
       sed -ri 's|(zookeeper.log.dir=).*|\1'"/var/log/zookeeper"'|' /opt/otter/zookeeper/conf/log4j.properties
 
+ADD docker-entrypoint.sh /docker-entrypoint.sh
+
 EXPOSE 2181 2888 3888
 WORKDIR /opt/otter/zookeeper
 VOLUME ["/data/zookeeper", "/var/log/zookeeper"]
