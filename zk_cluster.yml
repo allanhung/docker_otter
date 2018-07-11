@@ -2,6 +2,7 @@ version: '3'
 services:
     zk01:
         build: ./zookeeper
+        image: zk
         restart: always
         ports:
             - "2181:2181"
@@ -11,11 +12,12 @@ services:
             - "/opt/otter/data/zookeeper/data:/data/zookeeper"
             - "/opt/otter/data/zookeeper/log:/var/log/zookeeper"
         environment:
-            - ZOO_MY_ID: 1
-            - ZOO_SERVERS: server.1=192.168.0.1:2888:3888 server.2=192.168.0.2:2888:3888 server.3=192.168.0.3:2888:3888
+            - ZOO_MY_ID=1
+            - ZOO_SERVERS="server.1=192.168.0.1:2888:3888 server.2=192.168.0.2:2888:3888 server.3=192.168.0.3:2888:3888"
 
     zk02:
         build: ./zookeeper
+        image: zk
         restart: always
         ports:
             - "2181:2181"
@@ -25,11 +27,12 @@ services:
             - "/opt/otter/data/zookeeper/data:/data/zookeeper"
             - "/opt/otter/data/zookeeper/log:/var/log/zookeeper"
         environment:
-            - ZOO_MY_ID: 2
-            - ZOO_SERVERS: server.1=192.168.0.1:2888:3888 server.2=192.168.0.2:2888:3888 server.3=192.168.0.3:2888:3888
+            - ZOO_MY_ID=2
+            - ZOO_SERVERS=server.1=192.168.0.1:2888:3888 server.2=192.168.0.2:2888:3888 server.3=192.168.0.3:2888:3888"
 
     zk03:
         build: ./zookeeper
+        image: zk
         restart: always
         ports:
             - "2181:2181"
@@ -39,5 +42,5 @@ services:
             - "/opt/otter/data/zookeeper/data:/data/zookeeper"
             - "/opt/otter/data/zookeeper/log:/var/log/zookeeper"
         environment:
-            - ZOO_MY_ID: 3
-            - ZOO_SERVERS: server.1=192.168.0.1:2888:3888 server.2=192.168.0.2:2888:3888 server.3=192.168.0.3:2888:3888
+            - ZOO_MY_ID=3
+            - ZOO_SERVERS="server.1=192.168.0.1:2888:3888 server.2=192.168.0.2:2888:3888 server.3=192.168.0.3:2888:3888"
