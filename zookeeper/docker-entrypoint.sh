@@ -3,7 +3,7 @@
 set -e
 
 if [[ ! -f "/opt/otter/zookeeper/conf/zoo.cfg" ]]; then
-    mv /opt/otter/zookeeper/conf/zoo_sample.cfg /opt/otter/zookeeper/conf/zoo.cfg
+    cp /opt/otter/zookeeper/conf/zoo_sample.cfg /opt/otter/zookeeper/conf/zoo.cfg
     for server in $ZOO_SERVERS; do
         echo "$server" >> "/opt/otter/zookeeper/conf/zoo.cfg"
     done
