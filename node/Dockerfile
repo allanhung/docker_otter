@@ -1,6 +1,6 @@
 FROM centos:7
 
-RUN yum install -y wget which epel-release
+RUN yum install -y wget which file epel-release
 RUN yum install -y aria2 && yum clean all
 
 # jdk
