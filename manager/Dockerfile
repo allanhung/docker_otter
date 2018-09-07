@@ -3,8 +3,8 @@ FROM centos:7
 RUN yum install -y wget which mysql file
 
 # jdk
-RUN wget -q --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-linux-x64.tar.gz"
-RUN tar -zxf jdk-8u171-linux-x64.tar.gz -C /opt && rm -f jdk-8u171-linux-x64.tar.gz && ln -s /opt/jdk1.8.0_171 /opt/jdk
+RUN wget -q --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.tar.gz"
+RUN tar -zxf jdk-8u181-linux-x64.tar.gz -C /opt && rm -f jdk-8u181-linux-x64.tar.gz && ln -s /opt/jdk1.8.0_181 /opt/jdk
 RUN update-alternatives --install  /usr/bin/java java /opt/jdk/bin/java 1065 && \
     update-alternatives --set  java /opt/jdk/bin/java && \
     update-alternatives --install  /usr/bin/javac javac /opt/jdk/bin/javac 1065 && \
@@ -23,8 +23,8 @@ RUN update-alternatives --install  /usr/bin/java java /opt/jdk/bin/java 1065 && 
 #    update-alternatives --set  mvn /opt/apache-maven-3.5.3/bin/mvn
 
 # otter
-RUN wget -q --no-check-certificate -c https://github.com/alibaba/otter/releases/download/otter-4.2.16-preview-1/manager.deployer-4.2.16-SNAPSHOT.tar.gz
-RUN mkdir -p /opt/otter/otter_manager-4.2.16-preview-1 && tar -zxf manager.deployer-4.2.16-SNAPSHOT.tar.gz -C /opt/otter/otter_manager-4.2.16-preview-1 && ln -s /opt/otter/otter_manager-4.2.16-preview-1 /opt/otter/otter_manager
+RUN wget -q --no-check-certificate -c https://github.com/alibaba/otter/releases/download/otter-4.2.16-preview-2/manager.deployer-4.2.16-SNAPSHOT.tar.gz
+RUN mkdir -p /opt/otter/otter_manager-4.2.16-preview-2 && tar -zxf manager.deployer-4.2.16-SNAPSHOT.tar.gz -C /opt/otter/otter_manager-4.2.16-preview-2 && ln -s /opt/otter/otter_manager-4.2.16-preview-2 /opt/otter/otter_manager
 RUN wget -O /tmp/otter-manager-schema.sql -q --no-check-certificate -c https://raw.githubusercontent.com/alibaba/otter/master/manager/deployer/src/main/resources/sql/otter-manager-schema.sql
 ADD logback.xml /opt/otter/otter_manager/conf/
 ADD docker-entrypoint.sh /
