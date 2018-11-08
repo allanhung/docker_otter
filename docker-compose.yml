@@ -2,7 +2,7 @@ version: '3'
 services:
     manager:
         build: ./manager
-        image: otter_manager
+        image: otter_manager:4.2.16
         environment:
             - DOMAIN_NAME=127.0.0.1
             - HTTP_PORT=8080
@@ -19,7 +19,7 @@ services:
             - zk
     node:
         build: ./node
-        image: otter_node
+        image: otter_node:4.2.16
         environment:
             - MANAGER_ADDRESS=manager:1099
             - NID=1
@@ -36,7 +36,7 @@ services:
             - manager
     zk:
         build: ./zookeeper
-        image: zk        
+        image: zk:3.4.12        
         restart: always
         ports:
             - "2181:2181"

@@ -2,7 +2,7 @@ version: '3'
 services:
     zk01:
         build: ./zookeeper
-        image: zk
+        image: zk:3.4.12
         restart: always
         ports:
             - "2181:2181"
@@ -17,7 +17,7 @@ services:
 
     zk02:
         build: ./zookeeper
-        image: zk
+        image: zk:3.4.12
         restart: always
         ports:
             - "2181:2181"
@@ -32,7 +32,7 @@ services:
 
     zk03:
         build: ./zookeeper
-        image: zk
+        image: zk:3.4.12
         restart: always
         ports:
             - "2181:2181"
